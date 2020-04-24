@@ -1,6 +1,7 @@
 import re
 # Id, priority, lama proses, burst-time, waktu akses I/O, clock awal
-bukaFile = open("proses.txt","r")
+namafile = input('masukan nama file : ')
+bukaFile = open(namafile,"r")
 
 proses = []
 
@@ -29,11 +30,14 @@ for baris in proses:
 while(done!=len(proses)):
     print("\nwaktu : ",gT)
     iterator=0
-    
+    nomor=1
+    nomor2=1
+    nomor3=1
     for i in proses:
         
         if i[2] >= 0:
             if i[1] == 1:
+                print('qA, FCFS antrian-',nomor)
                 if i[0] not in antrianFCFS[tes]:
                     antrianFCFS.append([])
                     antrianFCFS[tes].append(i[0])
@@ -51,23 +55,29 @@ while(done!=len(proses)):
                     done+=1
                     print("================== proses yang telah selesai : ",done)
                     tes+=1
+                nomor+=1
                 '''
                 '''
             elif i[1]==2:
+                print('qB, Round Robbin antrian-',nomor2)
                 print("sisa waktu proses ",i[0]," : ",i[2])
                 i[2]-=1
                 if i[2] == -1:
                     done+=1
                     print("================== proses yang telah selesai : ",done)
+                nomor2+=1
 
             elif i[1]==3:
+                print('qC, non-preemptive SJF antrian-',nomor2)
                 print("sisa waktu proses ",i[0]," : ",i[2])
                 i[2]-=1
                 if i[2] == -1:
                     done+=1
                     print("================== proses yang telah selesai : ",done)
+                nomor3+=1
+            print("\n")
     gT+=1
-    input("tes : ")
+    input("tekan enter..")
         
         
     
